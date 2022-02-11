@@ -1,0 +1,92 @@
+<script>
+//computerPlay function
+//Returns Rock, Paper or Scissors
+function computerPlay() {
+   
+   let choice;
+    switch(Math.floor(Math.random() * 3))
+    {
+        case 0:
+        choice = 'paper'
+        break;
+        case 1:
+        choice = 'rock'
+        break;
+        case 2:
+        choice = 'scissors'
+        break;
+    }
+
+  return choice;
+}
+
+function ComputerWins(playerSelection, computerSelection){
+    return computerSelection + " beats " + playerSelection + '. You Lose!';
+}
+function PlayerWins(playerSelection, computerSelection){
+    return playerSelection + " beats " + computerSelection+ '.  You win!';
+}
+function TieGame(playerSelection, computerSelection)
+{
+    return computerSelection + " and " + playerSelection + '.  It is a tie!';
+}
+
+//Paper Rock Scissors Round
+function PlayRound(playerSelection, computerSelection)
+{
+
+    //Lower case the player answer to accept all casing input
+    playerSelection = playerSelection.toLowerCase();
+
+    let outcome;
+    if (playerSelection == 'rock' && computerSelection == 'paper')
+    {
+        outcome = ComputerWins(playerSelection, computerSelection);
+    }
+    if (playerSelection == 'rock' && computerSelection == 'rock')
+    { 
+        outcome =  TieGame(playerSelection, computerSelection);
+    }
+    if (playerSelection == 'rock' && computerSelection == 'scissors')
+    { 
+        outcome = PlayerWins(playerSelection, computerSelection);
+    }
+    if (playerSelection == 'paper' && computerSelection == 'paper')
+    { 
+        outcome =  TieGame(playerSelection, computerSelection);
+    }
+    if (playerSelection == 'paper' && computerSelection == 'rock')
+    { 
+        outcome =  PlayerWins(playerSelection, computerSelection);
+    }
+    if (playerSelection == 'paper' && computerSelection == 'scissors')
+    { 
+        outcome =  ComputerWins(playerSelection, computerSelection);
+    }
+    if (playerSelection == 'scissors' && computerSelection == 'paper')
+    { 
+        outcome = PlayerWins(playerSelection, computerSelection);
+    }
+    if (playerSelection == 'scissors' && computerSelection == 'rock')
+    { 
+        outcome =  ComputerWins(playerSelection, computerSelection);
+    }
+    if (playerSelection == 'scissors' && computerSelection == 'scissors')
+    { 
+        outcome =  TieGame(playerSelection, computerSelection);
+    }
+    return outcome;
+}
+
+function game()
+{
+    for (let i = 0; i < 5; i++)
+    {
+        let pSelection = prompt("Paper, rock or scissors?");
+        let cSelection = computerPlay();
+        console.log(PlayRound(pSelection, cSelection));
+    }
+}
+
+game();
+</script>
